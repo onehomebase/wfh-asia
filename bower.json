@@ -1,0 +1,31 @@
+{
+  "name": "Work-from-home Asia",
+  "version": "0.0.1",
+  "authors": [
+    "https://github.com/warrenca"
+  ],
+  "description": "Reasons to Work From Home - Asian Edition (Inspired by WFH.ninja)",
+  "keywords": [
+    "wfh",
+    "work-from-home",
+    "sick-leave",
+    "SL",
+    "mc",
+    "medical-certificate"
+  ],
+  "license": "MIT",
+  "homepage": "http://wfh-asia.herokuapp.com",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "angular": "~1.4.3",
+    "jquery": "~2.1.4",
+    "bootstrap": "~3.3.5"
+  }
+}
