@@ -62,9 +62,7 @@ $app->post('/reason', function() use ($app){
 		$reason->save();
 		echo json_encode(["id"=>$reason->getObjectId()]);
 	} catch (ParseException $ex) {  
-	// Execute any logic that should take place if the save fails.
-	// error is a ParseException object with an error code and message.
-		echo 'Failed to create new object, with error message: ' . $ex->getMessage();
+		echo json_encode(["status"=> 500 , "message"=> 'Failed to create new object, with error message: ' . $ex->getMessage()]);
 	}
 
 });
