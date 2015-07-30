@@ -18,12 +18,19 @@ $app->get('/', function () use ($app) {
 	$app->redirect('/index.html');
 });
 
-$app->get('/getRandomReason', function() {
+$app->get('/getRandomReason/:country', function($country) {
 	header('Content-Type: application/json');
-	$query = new ParseQuery("Reasons");
-	$results = $query->find();
-	$key = array_rand($results, 1);
-	
+	$reasons = new ParseQuery("Reasons");
+    $reasons->equalTo("country", $country);
+    $reasons->equalTo("approved", true);
+	$results = $reasons->find();
+
+    if (count($results)==0) {
+		echo json_encode(["status"=> 201, "message"=>"No results found on this country, please submit reason!"]);
+        die();
+    }
+
+    $key = array_rand($results, 1);
 	$reason_id = $results[$key]->getObjectId();
 	$reason = $results[$key]->get('reason');
 
@@ -37,10 +44,10 @@ $app->get('/getRandomReason', function() {
 	$down->equalTo("type", "down");
 	$down_votes = $down->count();
 
-	$up_votes = $up_votes>0 ? $up_votes : 0;
-	$down_votes = $down_votes>0 ? $down_votes : 0;
+	$up_votes = $up_votes > 0 ? $up_votes : 0;
+	$down_votes = $down_votes > 0 ? $down_votes : 0;
 
-	echo json_encode(["id"=>$reason_id, "what"=>$reason, "votes"=>["up"=>$up_votes, "down"=>$down_votes]]);
+	echo json_encode(["status"=>200, "id"=>$reason_id, "what"=>$reason, "votes"=>["up"=>$up_votes, "down"=>$down_votes]]);
 });
 
 $app->post('/vote/:id/:type', function($id, $type){
@@ -60,9 +67,13 @@ $app->post('/vote/:id/:type', function($id, $type){
 $app->post('/reason', function() use ($app){
 	header("Content-Type: application/json");
 	$xReason = $app->request->post('xReason');
-	$reason = new ParseObject("Reasons");
+	$xCountry = $app->request->post('xCountry');
+
+    $reason = new ParseObject("Reasons");
 	$reason->set("reason", $xReason);
-	try {
+	$reason->set("country", $xCountry);
+
+    try {
 		$reason->save();
 		echo json_encode(["id"=>$reason->getObjectId()]);
 	} catch (ParseException $ex) {  

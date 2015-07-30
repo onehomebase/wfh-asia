@@ -175,6 +175,17 @@ a {
   padding-right: 5px;
 }
 
+.country-container {
+    text-align: center;
+}
+
+.country-container select {
+    width: 344px;
+    height: 40px;
+    border: 1px solid #fff;
+    font-size: 20px;
+}
+
 .loader,
 .loader:before,
 .loader:after {

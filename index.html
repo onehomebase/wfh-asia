@@ -19,9 +19,17 @@
 </head>
 <body ng-app="wfh" ng-controller="CardController">
 	<div class="wrapper">
-		<div class="card card--medium">
+        <div class="country-container">
+            <select ng-model="x.country" ng-change="changeCountry()">
+                <option value="" disabled selected>Please choose a country</option>
+                <option value="ph">Philippines</option>
+                <option value="sg">Singapore</option>
+                <option value="my">Malaysia</option>
+            </select>
+        </div>
+		<div class="card card--medium" ng-show="x.country">
             <div class="loader" ng-show="loading">Loading...</div>
-			<h2 class="card__title">I'm working from home today because...</h2>
+			<h2 class="card__title">{{country_title[x.country]}}</h2>
 			<span ng-if="!isSubmittingReason && !loading">
 				<p class="card__text"><br/>{{reason.what}}</p>
 				<div class="card__action-bar">

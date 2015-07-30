@@ -16,12 +16,18 @@ app.config(['$httpProvider', function ($httpProvider) {
   });
 }]);
 
-app.controller('CardController', ['$scope','$http','$timeout',function($scope,$http,$timeout) {
+app.controller('CardController', ['$scope','$http','$timeout','$location', function($scope,$http,$timeout,$location) {
 	function getRandomReason() {
         $scope.loading = true;
-		$http.get('/getRandomReason').
+		$http.get('/getRandomReason/'+$scope.x.country).
 		success(function(data, status, headers, config) {
-			$scope.reason = data;
+            if (data.status==200) {
+                $scope.reason = data;
+            }else{
+                alert(data.message);
+                $scope.isSubmittingReason = true;
+                $scope.loading = false;
+            }
 		}).
 		error(function(data, status, headers, config) {
 		// called asynchronously if an error occurs
@@ -45,12 +51,12 @@ app.controller('CardController', ['$scope','$http','$timeout',function($scope,$h
 	};
 
 	function postReason() {
-		$http.post('/reason', {"xReason": $scope.x.reason}).
+		$http.post('/reason', {"xReason": $scope.x.reason, "xCountry": $scope.x.country}).
 		  success(function(data, status, headers, config) {
 		    $scope.reason = {
 		    	id: data.id,
 		    	what: $scope.x.reason,
-			votes: {up:0, down:0}
+                votes: {up:0, down:0}
 		    };
 			$scope.isSubmittingReason = false;
 			$scope.x.reason = "";
@@ -61,11 +67,29 @@ app.controller('CardController', ['$scope','$http','$timeout',function($scope,$h
 	};
 
 	var initializing = true;
-    getRandomReason();
+    var uriParams = $location.search();
+    
+    $scope.isSubmittingReason = false;
+	$scope.x = {reason: "", country:""};
+    
+    $scope.country_title = {
+        "ph": "Sick leave ako ngayon dahil...",
+        "sg": "I'm working from home today because...",
+        "my": "I'm working from home today because..."
+    };
 
-	$scope.isSubmittingReason = false;
-	$scope.x = {reason: ""};
-
+    if ($scope.country_title[uriParams.country]!=undefined) {
+        $scope.x.country = uriParams.country;
+    }
+    
+    if ($scope.x.country!="") {
+        getRandomReason();
+    }
+    
+    $scope.changeCountry = function(){
+        $location.search('country', $scope.x.country);
+    };
+        
 	$scope.vote = function(vote){
 		submitVote( $scope.reason.id, vote );
 		getRandomReason();
