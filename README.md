@@ -4,6 +4,10 @@
 - [npm](https://nodejs.org/) for bower installation
 - [Bower](http://bower.io/) to install Javascript packages
 
+### Demo
+
+You check out the working demo here @ [workfrom.xyz](http://www.workfrom.xyz).
+
 ### Installation
  
 ```$ composer.phar install && bower install ```
@@ -20,7 +24,7 @@ const REST_KEY = 'PARSE_REST_KEY';
 const MASTER_KEY = 'PARSE_MASTER_KEY';
 ```
 
-### Running the app
+### Running the app locally
 
 You must be using PHP 5.4.0 and up to use the PHP Built-In development server
 
@@ -32,3 +36,14 @@ $ php -S localhost:8000
 ### It should look like this if it's working.
 
 ![Work from home today!](screenshot.png)
+
+### Hosting
+
+You can host the code to any server as long as you meet the requirements.
+
+### Crowd control!
+
+I just added "approved" column under "Reasons" collection. 
+This is a boolean type, when you edit a row in Parse there's gonna be a dropdown for "true" or "false".
+Approving reason has never been that easy.
+
