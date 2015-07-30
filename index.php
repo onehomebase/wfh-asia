@@ -37,6 +37,9 @@ $app->get('/getRandomReason', function() {
 	$down->equalTo("type", "down");
 	$down_votes = $down->count();
 
+	$up_votes = $up_votes>0 ? $up_votes : 0;
+	$down_votes = $down_votes>0 ? $down_votes : 0;
+
 	echo json_encode(["id"=>$reason_id, "what"=>$reason, "votes"=>["up"=>$up_votes, "down"=>$down_votes]]);
 });
 

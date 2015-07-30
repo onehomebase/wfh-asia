@@ -49,7 +49,8 @@ app.controller('CardController', ['$scope','$http','$timeout',function($scope,$h
 		  success(function(data, status, headers, config) {
 		    $scope.reason = {
 		    	id: data.id,
-		    	what: $scope.x.reason
+		    	what: $scope.x.reason,
+			votes: {up:0, down:0}
 		    };
 			$scope.isSubmittingReason = false;
 			$scope.x.reason = "";
