@@ -14,7 +14,7 @@
 	<meta property="og:url" content="http://www.workfrom.xyz">
 	<meta property="og:description" content="Know what people say when they work from home.">
 	<meta property="og:type" content="product">
-	<meta property="og:image" content="http://www.workfrom.xyz/facebook-og-image.jpg" />
+	<meta property="og:image" content="http://www.workfrom.xyz/facebook-og-image.jpg?v=1" />
 
 </head>
 <body ng-app="wfh" ng-controller="CardController">
@@ -51,7 +51,25 @@
 		<a href="http://codepen.io/MattiaAstorino/pen/VYWxXy" target="_blank">Card Design from @MattiaAstorino</a> |
 		<a href="http://projects.lukehaas.me/css-loaders/" target="_blank">Loading by @lukehaas</a> |        
 		<a href="http://wfh.ninja" target="_blank">Inspired by wfh.ninja</a> |
-		<a href="http://github.com/warrenca" target="_blank">Code rushed @warrenca</a>        
+		<a href="http://github.com/warrenca" target="_blank">Code rushed @warrenca</a> |
+        <a class="twitter-share-button" href="https://twitter.com/intent/tweet?text=Work from home today! #wfh #workFromHomeReasons">Tweet</a>
 	</footer>
+
+    <script>window.twttr = (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0],
+        t = window.twttr || {};
+      if (d.getElementById(id)) return t;
+      js = d.createElement(s);
+      js.id = id;
+      js.src = "https://platform.twitter.com/widgets.js";
+      fjs.parentNode.insertBefore(js, fjs);
+
+      t._e = [];
+      t.ready = function(f) {
+        t._e.push(f);
+      };
+
+      return t;
+    }(document, "script", "twitter-wjs"));</script>    
 </body>
 </html>
