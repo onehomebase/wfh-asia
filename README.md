@@ -1,7 +1,7 @@
 ### Requirements
 - [Parse](http://parse.com) as database
 - PHP for back-end codes and [PHP Composer](https://getcomposer.org/download/) to install PHP Packages
-- [npm](https://nodejs.org/](https://nodejs.org/) for bower installation
+- [npm](https://nodejs.org/) for bower installation
 - [Bower](http://bower.io/) to install Javascript packages
 
 ### Installation
