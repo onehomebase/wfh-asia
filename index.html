@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<title>Work from home reasons (Asian Edition)</title>
+	<link rel="stylesheet" href="/css/app.css">
+	<script src="//www.parsecdn.com/js/parse-1.5.0.min.js"></script>
+	<script src="/bower_components/angular/angular.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/js/app.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<body ng-app="wfh" ng-controller="CardController">
+	<div class="wrapper">
+		<div class="card card--medium">
+            <div class="loader" ng-show="loading">Loading...</div>
+			<h2 class="card__title">I'm working from home today because...</h2>
+			<span ng-if="!isSubmittingReason && !loading">
+				<p class="card__text"><br/>{{reason.what}}</p>
+				<div class="card__action-bar">
+					<button class="card__button" id="burn" ng-click="vote('down')">BURN!!! ({{reason.votes.down}})</button>
+					<button class="card__button" id="genius" ng-click="vote('up')">GENIUS... ({{reason.votes.up}})</button>
+				</div>
+			</span>
+			<span ng-if="isSubmittingReason && !loading">
+                <p class="card__text"><br/><textarea ng-model="x.reason" id="x-reason" focus-me="focusInput"></textarea></p>
+				<div class="card__action-bar">
+					<button class="card__button" id="burn" ng-click="submit('cancel')">CANCEL</button>
+					<button class="card__button" id="genius" ng-click="submit('save')">SAVE!</button>
+				</div>
+			</span>
+            <button class="card__button" id="submit-reason" ng-show="!isSubmittingReason" ng-click="isSubmittingReason=true;focusInput=true">Submit your reason!</button>
+		</div>
+	</div>
+	<footer class="footer">
+		<a href="http://codepen.io/MattiaAstorino/pen/VYWxXy" target="_blank">Card Design from @MattiaAstorino</a> |
+		<a href="http://projects.lukehaas.me/css-loaders/" target="_blank">Loading by @lukehaas</a> |        
+		<a href="http://wfh.ninja" target="_blank">Inspired by wfh.ninja</a> |
+		<a href="http://github.com/warrenca" target="_blank">Code rushed @warrenca</a>        
+	</footer>
+</body>
+</html>
