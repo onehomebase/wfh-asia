@@ -3,13 +3,14 @@
 date_default_timezone_set('Asia/Singapore');
 
 require_once "vendor/autoload.php";
+require_once "config.php";
 
 use Parse\ParseClient;
 use Parse\ParseQuery;
 use Parse\ParseException;
 use Parse\ParseObject;
 
-ParseClient::initialize('APP_ID', 'REST_KEY', 'MASTER_KEY');
+ParseClient::initialize(APP_ID, REST_KEY, MASTER_KEY);
 
 $app = new \Slim\Slim();
 
