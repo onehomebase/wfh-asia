@@ -80,14 +80,12 @@ app.controller('CardController', ['$scope','$http','$timeout','$location', funct
 
     if ($scope.country_title[uriParams.country]!=undefined) {
         $scope.x.country = uriParams.country;
-    }
-    
-    if ($scope.x.country!="") {
         getRandomReason();
     }
-    
+        
     $scope.changeCountry = function(){
         $location.search('country', $scope.x.country);
+        getRandomReason();
     };
         
 	$scope.vote = function(vote){
