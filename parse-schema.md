@@ -4,6 +4,8 @@
 ```
 objectId (string)
 reason (string)
+approved (Boolean)
+country (string)
 createdAt (Date)
 updatedAt (Date)
 ```
