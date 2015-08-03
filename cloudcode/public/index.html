@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<title>Work from home reasons!</title>
+	<link rel="stylesheet" href="/css/app.css">
+	<script src="/bower_components/angular/angular.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/js/app.js" type="text/javascript" charset="utf-8"></script>
+
+	<meta property="og:title" content="Reasons to work from home today!">
+	<meta property="og:site_name" content="Work from home Reasons...">
+	<meta property="og:url" content="http://www.workfrom.xyz">
+	<meta property="og:description" content="Know what people say when they work from home.">
+	<meta property="og:type" content="product">
+	<meta property="og:image" content="http://www.workfrom.xyz/facebook-og-image.jpg?v=1" />
+
+</head>
+<body ng-app="wfh" ng-controller="CardController">
+	<div class="wrapper">
+        <div class="country-container">
+            <select ng-model="x.country" ng-change="changeCountry()">
+                <option value="" disabled selected>Please choose a country</option>
+                <option value="ph">Philippines</option>
+                <option value="sg">Singapore</option>
+                <option value="my">Malaysia</option>
+            </select>
+        </div>
+		<div class="card card--medium" ng-show="x.country">
+            <div class="loader" ng-show="loading">Loading...</div>
+			<h2 class="card__title">{{country_title[x.country]}}</h2>
+			<span ng-if="!isSubmittingReason && !loading">
+				<p class="card__text"><br/>{{reason.what}}</p>
+				<div class="card__action-bar">
+					<button class="card__button" id="burn" ng-click="vote('down')">BURN!!! ({{reason.votes.down}})</button>
+					<button class="card__button" id="genius" ng-click="vote('up')">GENIUS... ({{reason.votes.up}})</button>
+				</div>
+			</span>
+			<span ng-if="isSubmittingReason && !loading">
+                <p class="card__text"><br/><textarea ng-model="x.reason" id="x-reason" focus-me="focusInput"></textarea></p>
+				<div class="card__action-bar">
+					<button class="card__button" id="burn" ng-click="submit('cancel')">CANCEL</button>
+					<button class="card__button" id="genius" ng-click="submit('save')">SAVE!</button>
+				</div>
+			</span>
+            <button class="card__button" id="submit-reason" ng-show="!isSubmittingReason" ng-click="isSubmittingReason=true;focusInput=true">Submit your reason!</button>
+		</div>
+	</div>
+	<footer class="footer">
+		<a href="http://codepen.io/MattiaAstorino/pen/VYWxXy" target="_blank">Card Design from @MattiaAstorino</a> |
+		<a href="http://projects.lukehaas.me/css-loaders/" target="_blank">Loading by @lukehaas</a> |        
+		<a href="http://wfh.ninja" target="_blank">Inspired by wfh.ninja</a> |
+		<a href="http://github.com/warrenca" target="_blank">Code rushed @warrenca</a> |
+        <a class="twitter-share-button" href="https://twitter.com/intent/tweet?text=Work from home today! #wfh #workFromHomeReasons">Tweet</a>
+	</footer>
+    <a href="http://github.com/warrenca/wfh-asia"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/c6286ade715e9bea433b4705870de482a654f78a/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f77686974655f6666666666662e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_white_ffffff.png"></a>
+    <script>window.twttr = (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0],
+        t = window.twttr || {};
+      if (d.getElementById(id)) return t;
+      js = d.createElement(s);
+      js.id = id;
+      js.src = "https://platform.twitter.com/widgets.js";
+      fjs.parentNode.insertBefore(js, fjs);
+
+      t._e = [];
+      t.ready = function(f) {
+        t._e.push(f);
+      };
+
+      return t;
+    }(document, "script", "twitter-wjs"));</script>    
+</body>
+</html>
