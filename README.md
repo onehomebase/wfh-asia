@@ -1,3 +1,5 @@
+## PHP as back-end code
+
 ### Requirements
 - [Parse](http://parse.com) as database
 - PHP for back-end codes and [PHP Composer](https://getcomposer.org/download/) to install PHP Packages
@@ -46,4 +48,25 @@ You can host the code to any server as long as you meet the requirements.
 I just added "approved" column under "Reasons" collection. 
 This is a boolean type, when you edit a row in Parse there's gonna be a dropdown for "true" or "false".
 Approving reason has never been that easy.
+
+
+## ExpressJS as back-end code
+
+### Requirements
+
+- [Parse](http://parse.com) as database
+- [Parse CLI](https://parse.com/docs/js/guide#command-line) to host back-end in Parse Cloud
+- [npm](https://nodejs.org/) for bower installation
+- [Bower](http://bower.io/) to install Javascript packages
+
+### Configuration
+
+Open ```cloudcode/config/global.json``` and change the ```applicationId``` and ```masterKey```.
+
+### Installation and deployment
+
+```
+$ cd /path-to/wfh-asia/cloudcode/public
+$ bower install && parse deploy
+```
 
